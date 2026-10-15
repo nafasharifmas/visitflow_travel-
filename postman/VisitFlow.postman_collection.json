@@ -1,0 +1,475 @@
+{
+  "info": {
+    "name": "Visit Flow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"newuser\",\n  \"name\": \"New User\",\n  \"email\": \"new@example.com\",\n  \"password\": \"Secret123\",\n  \"password_confirmation\": \"Secret123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login (admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"login\": \"admin@visitflow.local\",\n  \"password\": \"Admin@12345\"\n}"
+        }
+      },
+      "listen": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('admin_token', pm.response.json().data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login (user)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"login\": \"user\",\n  \"password\": \"User@12345\"\n}"
+        }
+      },
+      "listen": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.collectionVariables.set('user_token', pm.response.json().data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/logout",
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      }
+    },
+    {
+      "name": "Current user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/user"
+      }
+    },
+    {
+      "name": "Places",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/places"
+      }
+    },
+    {
+      "name": "Places search",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/places?search=temple"
+      }
+    },
+    {
+      "name": "Places by category",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/places?category=museums"
+      }
+    },
+    {
+      "name": "Place details",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/places/1"
+      }
+    },
+    {
+      "name": "Categories",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/categories"
+      }
+    },
+    {
+      "name": "Itineraries list",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/itineraries"
+      }
+    },
+    {
+      "name": "Itinerary create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/itineraries",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My day\",\n  \"start_time\": \"09:00\",\n  \"place_ids\": [\n    1,\n    2,\n    3\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Itinerary show",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/itineraries/1"
+      }
+    },
+    {
+      "name": "Itinerary update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/itineraries/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Edited\",\n  \"place_ids\": [\n    2,\n    1\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Itinerary delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/itineraries/1"
+      }
+    },
+    {
+      "name": "Admin places list",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/places"
+      }
+    },
+    {
+      "name": "Admin place create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/places",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_id\": 1,\n  \"name\": \"New Place\",\n  \"description\": \"Text\",\n  \"opening_hours\": \"09:00 - 17:00\",\n  \"distance_km\": 5,\n  \"latitude\": 6.9,\n  \"longitude\": 79.85\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin place update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/places/1",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_id\": 1,\n  \"name\": \"New Place\",\n  \"description\": \"Text\",\n  \"opening_hours\": \"09:00 - 17:00\",\n  \"distance_km\": 5,\n  \"latitude\": 6.9,\n  \"longitude\": 79.85\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin place delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/places/12"
+      }
+    },
+    {
+      "name": "Admin users list",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/users"
+      }
+    },
+    {
+      "name": "Admin user update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/users/2",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Renamed\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Admin user delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/users/3"
+      }
+    },
+    {
+      "name": "Forbidden check: user on admin API (expect 403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{user_token}}"
+          }
+        ],
+        "url": "{{base_url}}/admin/places"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api"
+    },
+    {
+      "key": "admin_token",
+      "value": ""
+    },
+    {
+      "key": "user_token",
+      "value": ""
+    }
+  ]
+}

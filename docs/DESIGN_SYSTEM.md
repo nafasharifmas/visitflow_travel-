@@ -1,0 +1,3 @@
+# Design system
+Palette tokens: ground #EFE9DD, ground2 #E5DED0, ink #141C2B, ink2 #4A5364, muted #767E8C, accent #2C4A8F, hairline rgba(20,28,43,.16). Type: **Newsreader** (display, −0.02em, italic accent for emphasis) + **Courier Prime** (UI/body, labels 11–12px, 0.07–0.1em, line-height ≈1.8). Radius 0 everywhere (Tailwind radii zeroed + global rule). Nav 58px fixed, blur 12px, hairline. Buttons: square, hairline/ink border, no fill; selected = accent text/border (`aria-pressed`). Rows: hairline-ruled, right-aligned tabular figures. Focus: 2px accent outline. Reduced motion honoured.
+**Prohibited:** gradients, glow, glass cards, bento, rounded cards/buttons, large blue fills, heavy shadows, generic SaaS look.

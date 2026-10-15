@@ -1,0 +1,2 @@
+# Backend
+Controllers are thin: `AuthController`, `PlaceController`, `CategoryController`, `ItineraryController`, `Admin\PlaceController`, `Admin\UserController`. Validation in Form Requests; output via API Resources (explicit allow-lists). `EnsureUserIsAdmin` (alias `admin`). Itinerary writes run in `DB::transaction`. `bootstrap/app.php` maps auth/not-found errors to JSON. Config: `config/visitflow.php`. `setup.sh` layers these files on a fresh Laravel 12 skeleton.

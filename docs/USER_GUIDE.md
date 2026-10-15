@@ -1,0 +1,2 @@
+# User guide
+Explore: search by name/keyword and pick a category (one click). Open a place for hours, distance and map. “Add to plan” builds a temporary plan (kept for the browser session). Planner: reorder with ↑/↓, remove, set start time, see visit windows (when estimates exist) and straight-line km. Guests see “Sign in to save”; registered users can save and later view/delete itineraries under *My itineraries*. Route guidance is planning help, not live traffic, transport or safety advice.

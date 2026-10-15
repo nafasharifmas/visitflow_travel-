@@ -1,0 +1,2 @@
+# Frontend
+Vite + React 18 + TS (strict) + Tailwind 3 + React Router 6. `src/api/client.ts` is the single API client (typed `ApiError`, Bearer token). Contexts: `Auth`, `Plan` (guest plan in `sessionStorage`). Pages in `src/pages`, admin in `src/pages/admin`, landing visuals in `src/landing`. Routes: `/ /explore /places/:id /map /planner /login /register /itineraries /itineraries/:id /admin /admin/places /admin/places/create /admin/places/:id/edit /admin/users`. `RequireAuth` is UX only.

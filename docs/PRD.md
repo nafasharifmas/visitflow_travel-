@@ -1,0 +1,2 @@
+# PRD (from SRS v1.0)
+Goal: reduce effort to assemble reliable local tourism info into a one-day plan within ~25 km. Users: Guest, Registered, Admin. Scope: FR-001–FR-040, NFR-001–NFR-020, BR-001–BR-019 per SRS. Out of scope (BR-018/019): booking, payments, hotels, ticketing/ride-hailing, reviews, seasonal events, real-time hours, multilingual, AI, WebSockets. Open items: SRS Appendix C (see `DECISIONS.md`, `KNOWN_LIMITATIONS.md`).

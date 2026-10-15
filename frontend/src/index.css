@@ -1,0 +1,34 @@
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-padding-top: 58px; }
+body { @apply bg-ground text-ink font-mono text-[14px] leading-[1.8]; margin: 0; }
+h1, h2, h3, h4 { @apply font-display font-normal; letter-spacing: -0.02em; line-height: 1.08; }
+a { @apply text-accent underline underline-offset-4; }
+:focus-visible { outline: 2px solid #2C4A8F; outline-offset: 2px; }
+body:not(:has(.aventis-root)) *, body:not(:has(.aventis-root)) *::before, body:not(:has(.aventis-root)) *::after { border-radius: 0 !important; }
+
+@layer components {
+  .label { @apply font-mono text-[11px] uppercase tracking-[0.09em] text-ink2; }
+  .kicker { @apply label text-accent; }
+  .rule { @apply border-t border-hair; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center border border-ink bg-transparent px-5 font-mono text-[12px] uppercase tracking-[0.09em] text-ink no-underline transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-quiet { @apply btn border-hair text-ink2; }
+  .btn[aria-pressed='true'], .btn-active { @apply border-accent text-accent; }
+  .input { @apply min-h-[44px] w-full border border-hair bg-transparent px-3 font-mono text-[13px] text-ink placeholder:text-muted focus:border-accent; }
+  .row { @apply grid grid-cols-[1fr_auto] items-baseline gap-x-6 border-t border-hair py-4; }
+  .wrap { @apply mx-auto w-full max-w-[1280px] px-5 md:px-10; }
+  .fig { @apply font-mono tabular-nums; font-variant-numeric: tabular-nums; }
+}
+
+.vf-pin { width: 14px; height: 14px; background: #EFE9DD; border: 2px solid #2C4A8F; }
+.vf-pin.active { background: #2C4A8F; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { border-radius: 0 !important; box-shadow: none !important; background: #EFE9DD; border: 1px solid rgba(20,28,43,.3); color: #141C2B; }
+.leaflet-popup-content { font-family: 'Courier Prime', monospace; font-size: 12px; margin: 12px 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
